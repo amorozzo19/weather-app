@@ -1,0 +1,17 @@
+form {
+    margin-top: 3rem;
+}
+
+input {
+    background-color: transparent;
+    color: white;
+    border: 0;
+    border-bottom: 2px solid whitesmoke;
+    border-radius: 10%;
+    padding: 5px;
+}
+
+input:focus {
+    background-color: transparent;
+    box-shadow: none !important;
+}

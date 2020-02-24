@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(./components/assets/body-of-water-1294668.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 code {

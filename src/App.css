@@ -7,11 +7,11 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* @media (prefers-reduced-motion: no-preference) {
+  .wi {
+    animation: Weather-Icon infinite 20s linear;
   }
-}
+} */
 
 .App-header {
   background-color: #282c34;
@@ -28,11 +28,11 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes Weather-Icon {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
