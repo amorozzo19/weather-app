@@ -5,9 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(./components/assets/body-of-water-1294668.jpg);
+  background: url(./components/assets/brown-wooden-dock-over-body-of-water-1227520.jpg) no-repeat center center fixed;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 
 code {
