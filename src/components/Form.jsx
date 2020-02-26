@@ -4,8 +4,8 @@ import "./form.style.css";
 const Form = props => {
   return (
     <div className="container">
-      <div>{props.error ? error("error") : null}</div>
-      <div>{props.cod_error ? error() : null}</div>
+      <div className="error">{props.error ? error("error") : null}</div>
+      <div className="error">{props.cod_error ? error() : null}</div>
       <form onSubmit={props.loadWeather}>
         <div className="row">
           <div className="col-md-3 offset-md-2">

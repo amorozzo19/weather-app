@@ -98,6 +98,7 @@ class App extends React.Component {
       const api_call = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`
       );
+      this.setState({ error: false });
 
       const response = await api_call.json();
       const responseStatus = api_call.status;
@@ -109,7 +110,8 @@ class App extends React.Component {
           celcius: this.calFahrenheit(response.main.temp),
           temp_max: this.calFahrenheit(response.main.temp_max),
           temp_min: this.calFahrenheit(response.main.temp_min),
-          description: response.weather[0].description.toUpperCase()
+          description: response.weather[0].description.toUpperCase(),
+          cod_error: false
         });
 
         this.getWeatherIcon(
