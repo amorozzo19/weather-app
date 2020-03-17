@@ -4,13 +4,14 @@ import "./form.style.css";
 const Form = props => {
   return (
     <div className="container">
-      <div>{props.error ? error() : null}</div>
+      <div className="error">{props.error ? error("error") : null}</div>
+      <div className="error">{props.cod_error ? error() : null}</div>
       <form onSubmit={props.loadWeather}>
         <div className="row">
           <div className="col-md-3 offset-md-2">
             <input
               type="text"
-              classname="form-control"
+              className="form-control"
               name="city"
               autoComplete="off"
               placeholder="City"
@@ -19,7 +20,7 @@ const Form = props => {
           <div className="col-md-3">
             <input
               type="text"
-              classname="form-control"
+              className="form-control"
               name="country"
               autoComplete="off"
               placeholder="Country"
@@ -34,10 +35,14 @@ const Form = props => {
   );
 };
 
-function error() {
-  return (
+function error(error) {
+  return error === "error" ? (
     <div className="alert alert-danger mx-5" role="alert">
       Please Enter City and Country
+    </div>
+  ) : (
+    <div className="alert alert-danger mx-5" role="alert">
+      Invalid City or Country Code
     </div>
   );
 }

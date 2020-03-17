@@ -13,14 +13,14 @@ class App extends React.Component {
     super();
     this.state = {
       city: undefined,
-      country: undefined,
       icon: undefined,
       main: undefined,
       celcius: undefined,
       temp_max: undefined,
       temp_min: undefined,
       description: "",
-      error: false
+      error: false,
+      cod_error: false
     };
 
     this.weatherIcon = {
@@ -30,7 +30,7 @@ class App extends React.Component {
       Snow: "snow",
       Atmosphere: "fog",
       Clear: "sunny",
-      Clouds: "alt-cloudy"
+      Clouds: "cloudy"
     };
   }
 
@@ -98,23 +98,30 @@ class App extends React.Component {
       const api_call = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`
       );
+      this.setState({ error: false });
 
       const response = await api_call.json();
+      const responseStatus = api_call.status;
 
-      this.setState({
-        city: `${response.name},${response.sys.country}`,
-        main: this.calFahrenheit(response.main.temp),
-        celcius: this.calFahrenheit(response.main.temp),
-        temp_max: this.calFahrenheit(response.main.temp_max),
-        temp_min: this.calFahrenheit(response.main.temp_min),
-        description: response.weather[0].description
-      });
+      if (responseStatus === 200) {
+        this.setState({
+          city: `${response.name},${response.sys.country}`,
+          main: this.calFahrenheit(response.main.temp),
+          celcius: this.calFahrenheit(response.main.temp),
+          temp_max: this.calFahrenheit(response.main.temp_max),
+          temp_min: this.calFahrenheit(response.main.temp_min),
+          description: response.weather[0].description.toUpperCase(),
+          cod_error: false
+        });
 
-      this.getWeatherIcon(
-        this.weatherIcon,
-        response.weather[0].id,
-        response.weather[0].icon
-      );
+        this.getWeatherIcon(
+          this.weatherIcon,
+          response.weather[0].id,
+          response.weather[0].icon
+        );
+      } else {
+        this.setState({ cod_error: true });
+      }
     } else {
       this.setState({ error: true });
     }
@@ -123,7 +130,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Form loadWeather={this.getWeather} error={this.state.error} />
+        <Form
+          loadWeather={this.getWeather}
+          error={this.state.error}
+          cod_error={this.state.cod_error}
+        />
         <Weather
           city={this.state.city}
           temp_min={this.state.temp_min}

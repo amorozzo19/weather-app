@@ -8,13 +8,14 @@ const Weather = ({
   icon,
   description
 }) => {
-  console.log(icon);
   return (
     <div className="container">
       <div className="cards pt-4">
         <h1>{city}</h1>
         <h5 className="py-4">
-          <i className={`wi ${icon} display-1`}></i>
+          <i className={`wi ${icon} display-1`}>
+            {icon ? "" : <div class="spinner-border text-success"></div>}
+          </i>
         </h5>
         {temp_fahrenheit ? (
           <h1 className="py-2">{temp_fahrenheit}&deg;</h1>
